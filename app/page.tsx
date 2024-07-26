@@ -33,7 +33,10 @@ const GitDiffFormatter: React.FC = () => {
     // Split the diff into lines
     const delimiter = "###DELIM###";
     const escapedLineBreakPattern = /(?<!\\)\\n/g; // Matches '\n' not preceded by a backslash
-    const modifiedText = diffText.replace(escapedLineBreakPattern, delimiter);
+    const modifiedText = diffText
+      .replace(escapedLineBreakPattern, delimiter)
+      .replace(/\n/g, delimiter); // Matches a newline
+    console.log(modifiedText);
     const lines = modifiedText.split(delimiter);
 
     return lines.map((line, index) => {
